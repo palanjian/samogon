@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="css/login.css" />
+  <meta charset="utf-8" />
+  <title>pec.farm 🌎🌽👨‍🌾</title>
+</head>
+<body class="noselect">
+    <div id="logoutdiv">
+        <form action="/logout?_method=DELETE" method="POST"> <!--Overrides the "POST" method with the one we created (DELETE) since HTML forms dont support DELETE-->
+        <button type = "submit" class="logoutbutton">Log Out</button>
+    </div>
+    <h1>Hello, <%= name %></h1>
+    
+    <div class="banner footer">
+        <div class="clouds">
+          <img src="assets/images/cloud1.png" style="--i:1;">
+          <img src="assets/images/cloud2.png" style="--i:2;">
+          <img src="assets/images/cloud3.png" style="--i:3;">
+          <img src="assets/images/cloud4.png" style="--i:4;">
+          <img src="assets/images/cloud5.png" style="--i:5;">
+          <img src="assets/images/cloud1.png">
+          <img src="assets/images/cloud2.png">
+          <img src="assets/images/cloud3.png">
+          <img src="assets/images/cloud4.png">
+          <img src="assets/images/cloud5.png">
+        </div>
+      </div>
+
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="css/login.css" />
+  <meta charset="utf-8" />
+  <title>pec.farm 🌎🌽👨‍🌾</title>
+</head>
+<body class="noselect">
+  <% if(messages.error) { %>
+    <%= messages.error %>
+  <% } %>
+  <div id="maintitle"><h1>samogon.js</h1></div>
+  <div class="motd"><h2>product of @palanjian on GitHub!</h2></div>
+  <form class="loginform" autocomplete="off" action="/login" method="POST">
+    <br><input type="text" placeholder="username" id="username" name="username"><br>
+    <br><input type="password" placeholder="password" id="password" name="password"><br>
+    <br><button type="submit" class="button" onclick="login()">login</button></br>
+  </form>
+
+  <div class="banner footer">
+    <div class="clouds">
+      <img src="assets/images/cloud1.png" style="--i:1;">
+      <img src="assets/images/cloud2.png" style="--i:2;">
+      <img src="assets/images/cloud3.png" style="--i:3;">
+      <img src="assets/images/cloud4.png" style="--i:4;">
+      <img src="assets/images/cloud5.png" style="--i:5;">
+      <img src="assets/images/cloud1.png">
+      <img src="assets/images/cloud2.png">
+      <img src="assets/images/cloud3.png">
+      <img src="assets/images/cloud4.png">
+      <img src="assets/images/cloud5.png">
+    </div>
+  </div>
+  <!-- Why are you inspecting my code? -->
+</body>
+</html>
+
