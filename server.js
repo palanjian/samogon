@@ -1,7 +1,6 @@
 if(process.env.NODE_ENV !== 'production'){
     require('dotenv').config()
 }
-
 //imports express
 const express = require('express')
 const app = express()
@@ -45,11 +44,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
 
-app.get('/', (req, res) => {
+app.get('/', checkNotAuthenticated, (req, res) => {
     res.render('login.ejs') 
 })
 
-app.get('/register', (req, res) =>{
+app.get('/register', checkNotAuthenticated, (req, res) =>{
     res.render('register.ejs')
 })
 
@@ -57,13 +56,13 @@ app.get('/home', checkAuthenticated, (req, res) =>{
     res.render('index.ejs', { name: req.user.username})
 })
 
-app.post('/login', passport.authenticate('local', { //local strategy
+app.post('/login', checkNotAuthenticated, passport.authenticate('local', { //local strategy
     successRedirect: '/home', //where do we go if there's a success
     failureRedirect: '/', //where do we go if there's a failure
     failureFlash: true //allows us to have a flash message on error
 }))
 
-app.delete('/logout', function(req, res, next) {
+app.delete('/logout', checkAuthenticated, function(req, res, next) {
     req.logout(function(err) {
     if (err) { return next(err); }
     res.redirect('/');
@@ -75,6 +74,12 @@ function checkAuthenticated(req, res, next){
         return next()
     }
     res.redirect('/')
+}
+function checkNotAuthenticated(req, res, next){
+    if(req.isAuthenticated()){
+        return res.redirect('/home')
+    }
+    next()
 }
 
 //can add checkNotAuthenticated if dont want user to return to login

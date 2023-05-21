@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="css/login.css" />
   <meta charset="utf-8" />
-  <title>pec.farm 🌎🌽👨‍🌾</title>
+  <title>samogon.js 🌎🌽👨‍🌾</title>
 </head>
 <body class="noselect">
   <% if(messages.error) { %>
     <%= messages.error %>
   <% } %>
-
-  <div class="sidebar">
-    <form action="/">
-      <button type = "submit" class="logoutbutton"><h2>Log In?</h2></button>
-    </form>
-  </div>
-
+  
   <div id="maintitle"><h1>samogon.js</h1></div>
   <div class="motd"><h2>product of @palanjian on GitHub!</h2></div>
   <form class="loginform" autocomplete="off" action="/login" method="POST">
@@ -24,6 +19,7 @@
     <br><input type="password" placeholder="password" id="password" name="password"><br>
     <br><button type="submit" class="register button">register</button></br>
   </form>
+  <div class="link"><a href="/">have an account? log in here</div>
 
   <div class="banner footer">
     <div class="clouds">
