@@ -178,7 +178,7 @@ input{
     position: relative;
     font-size: 20px;
     font-family: 'Sniglet', cursive;
-    color: rgb(255, 255, 255);
+    color: #363636;
     text-align: center;
     margin-top: 1%;
 }
@@ -187,3 +187,15 @@ a:visited {
     text-decoration: none; 
     color: #363636; 
    }
+
+.errormessage{
+    position: relative;
+    text-align: center;
+    margin-bottom: -1%;
+}
+.errortext{
+    font-size: 30px;
+    font-family: 'Sniglet', cursive;
+    color: #363636;
+    text-align: center;
+}
