@@ -62,12 +62,32 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', { //loc
     failureFlash: true //allows us to have a flash message on error
 }))
 
+app.post('/register', checkNotAuthenticated, (req, res) =>{
+    try{
+        //change to hashed password on official version, ensure no two users share an email, ensure no incorrect characters, if they do send an error message
+        //send a confirmation email?
+        const pass = req.body.password;
+        users.push({
+            id: Date.now().toString(),
+            username: (req.body.username).trim(), 
+            //email: req.body.email,
+            password: pass
+        })
+        res.redirect('/')
+    }
+    catch{
+        res.redirect('/')
+    }
+    console.log(users)
+})
+
 app.delete('/logout', checkAuthenticated, function(req, res, next) {
     req.logout(function(err) {
     if (err) { return next(err); }
     res.redirect('/');
   });
 });
+
 
 function checkAuthenticated(req, res, next){
     if(req.isAuthenticated()){
