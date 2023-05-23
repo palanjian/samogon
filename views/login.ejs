@@ -7,10 +7,6 @@
   <title>samogon.js 🌎👨‍🌾</title>
 </head>
 <body class="noselect">
-  <% if(messages.error) { %>
-    <%= messages.error %>
-  <% } %>
-
   <div id="maintitle"><h1>samogon</h1></div>
   <div class="motd"><h2>product of @palanjian on GitHub!</h2></div>
   <form class="loginform" autocomplete="off" action="/login" method="POST">
@@ -33,6 +29,12 @@
       <img src="assets/images/cloud5.png">
     </div>
   </div>
+  <div class="errormessage">
+    <% if(messages.error) { %>
+      <%= messages.error %>
+    <% } %>
+  </div>
+  
   <!-- Why are you inspecting my code? -->
 </body>
 </html>
