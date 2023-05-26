@@ -10,7 +10,7 @@ const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
-
+const mongoose = require('mongoose')
 const users = [
     { id: '1', username: 'palanjian', password: 'password' },
     { id: '2', username: 'naijnalap', password: 'drowssap' },
@@ -24,11 +24,18 @@ initializePassport(
     id => users.find(user => user.id === id)
 )
 
+//database intitalization
+const databaseURI = process.env.DATABASE_URI
+const User = require('./models/userdata')
+mongoose.connect(databaseURI, {useNewUrlParser: true, useUnifiedTopology:true })
+    .then((result) => {
+        console.log('Connected to mongoDB database')
+        app.listen(3000)
+    } )
+    .catch((err) => console.log(err))
 
 app.use(express.static(__dirname + '/public')) //allows us to serve CSS
 
-//instance variable that will store our users
-//TODO: integrate MONGODB, this is just for testing 
 
 app.set('view-engine', 'ejs')
 
@@ -67,18 +74,20 @@ app.post('/register', checkNotAuthenticated, (req, res) =>{
         //change to hashed password on official version, ensure no two users share an email, ensure no incorrect characters, if they do send an error message
         //send a confirmation email?
         const pass = req.body.password;
-        users.push({
-            id: Date.now().toString(),
-            username: (req.body.username).trim(), 
-            //email: req.body.email,
+        const email = req.body.email
+        const username = req.body.username
+
+        const user = new User({
+            email: email,
+            username: username,
             password: pass
         })
+        user.save() //catch any exceptions here
         res.redirect('/')
     }
     catch{
         res.redirect('/')
     }
-    console.log(users)
 })
 
 app.delete('/logout', checkAuthenticated, function(req, res, next) {
@@ -102,5 +111,20 @@ function checkNotAuthenticated(req, res, next){
     next()
 }
 
-//can add checkNotAuthenticated if dont want user to return to login
-app.listen(3000)
+
+//boilerplate "add to db " functionality
+/* app.get('/add-user', (req, res) => {
+    const user = new User({
+        email: 'me@palanjian.com',
+        username: 'palanjian',
+        password: 'password'
+    })
+
+    user.save()
+        .then((result) => {
+            res.send(result)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}) */
