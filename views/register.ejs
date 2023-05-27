@@ -30,6 +30,11 @@
       <img src="assets/images/cloud5.png">
     </div>
   </div>
+  <div class="errormessage">
+    <% if(messages.error) { %>
+      <%= messages.error %>
+    <% } %>
+  </div>
   <!-- Why are you inspecting my code? -->
 </body>
 </html>

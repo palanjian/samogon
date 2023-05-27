@@ -52,7 +52,7 @@ app.use(passport.session())
 app.use(methodOverride('_method'))
 
 app.get('/', checkNotAuthenticated, (req, res) => {
-    res.render('login.ejs') 
+    res.render('login.ejs', {error: ''}) 
 })
 
 app.get('/register', checkNotAuthenticated, (req, res) =>{
@@ -74,8 +74,14 @@ app.post('/register', checkNotAuthenticated, (req, res) =>{
         //change to hashed password on official version, ensure no two users share an email, ensure no incorrect characters, if they do send an error message
         //send a confirmation email?
         const pass = req.body.password;
-        const email = req.body.email
-        const username = req.body.username
+        const email = req.body.email.strip()
+        const username = req.body.username.strip()
+
+        //working?
+        if(!pass || !email || !username){
+            console.log('Invalid credentials')
+            res.redirect('/register', { message: 'Please enter correct credentials'})
+        }
 
         const user = new User({
             email: email,
