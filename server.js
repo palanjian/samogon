@@ -80,7 +80,7 @@ app.post('/register', checkNotAuthenticated, (req, res) =>{
         //working?
         if(!pass || !email || !username){
             console.log('Invalid credentials')
-            res.redirect('/register', { message: 'Please enter correct credentials'})
+            res.redirect('/register')
         }
 
         const user = new User({
